@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome - HMS{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm text-center">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold text-primary">Hostel Management System</h1>
+        <p class="col-md-8 mx-auto fs-4 text-muted mt-3">A modern, centralized solution to manage all hostel activities efficiently. Designed for administrators and students.</p>
+        <hr class="my-4">
+        <p>Please log in to access your dashboard and services.</p>
+        <a class="btn btn-primary btn-lg mt-2 px-5 py-2" href="{{ url_for('main.login') }}" role="button">Login to Portal</a>
+    </div>
+</div>
+{% endblock %}

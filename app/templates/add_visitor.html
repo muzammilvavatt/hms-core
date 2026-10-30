@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Log Visitor - HMS{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 mt-3">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Log New Visitor</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {{ form.student_id.label(class="form-label fw-bold") }}
+                        {{ form.student_id(class="form-select") }}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            {{ form.visitor_name.label(class="form-label fw-bold") }}
+                            {{ form.visitor_name(class="form-control") }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{ form.phone.label(class="form-label fw-bold") }}
+                            {{ form.phone(class="form-control") }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            {{ form.date.label(class="form-label fw-bold") }}
+                            {{ form.date(class="form-control", type="date") }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{ form.time_in.label(class="form-label fw-bold") }}
+                            {{ form.time_in(class="form-control", placeholder="HH:MM") }}
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        {{ form.purpose.label(class="form-label fw-bold") }}
+                        {{ form.purpose(class="form-control") }}
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('main.visitors') }}" class="btn btn-outline-secondary">Cancel</a>
+                        {{ form.submit(class="btn btn-primary px-4") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

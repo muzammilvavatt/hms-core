@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Hostels - HMS{% endblock %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12 d-flex justify-content-between align-items-center border-bottom pb-3">
+        <div>
+            <h2 class="text-primary fw-bold mb-2">Infrastructure</h2>
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link active fw-bold px-4" href="{{ url_for('main.hostels') }}">Hostels</a></li>
+                <li class="nav-item"><a class="nav-link text-muted fw-bold px-4" href="{{ url_for('main.rooms') }}">Rooms</a></li>
+            </ul>
+        </div>
+        <a href="{{ url_for('main.add_hostel') }}" class="btn btn-success fw-bold"><i class="bi bi-plus-circle"></i> Add New Hostel</a>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Hostel Name</th>
+                        <th>Type</th>
+                        <th>Location</th>
+                        <th>Capacity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hostel in hostels %}
+                    <tr>
+                        <td><strong>{{ hostel.name }}</strong></td>
+                        <td>{{ hostel.type }}</td>
+                        <td>{{ hostel.location }}</td>
+                        <td>{{ hostel.capacity }}</td>
+                        <td><span class="badge bg-success">{{ hostel.status }}</span></td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">No hostels found. Add a hostel to get started.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
