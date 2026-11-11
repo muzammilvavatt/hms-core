@@ -236,6 +236,11 @@ class HMSApp(ctk.CTk):
 
     def navigate_to(self, view_key):
         """Swaps the current view in the content area."""
+        # Enforce role-based access control
+        admin_only_views = {"admin_dashboard", "students", "hostels_rooms", "allocations", "attendance", "visitors"}
+        if self.current_user and self.current_user.get("role") != "Admin" and view_key in admin_only_views:
+            view_key = "student_dashboard"
+
         # Update nav button highlights
         for key, btn in self.nav_buttons.items():
             if key == view_key:
@@ -259,7 +264,7 @@ class HMSApp(ctk.CTk):
         elif view_key == "allocations":
             view = AllocationsView(self.content_container)
         elif view_key == "fees":
-            view = FeesView(self.content_container)
+            view = FeesView(self.content_container, current_user=self.current_user)
         elif view_key == "attendance":
             view = AttendanceView(self.content_container)
         elif view_key == "complaints":

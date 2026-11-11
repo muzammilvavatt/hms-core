@@ -18,10 +18,16 @@ def get_app():
     return _flask_app
 
 def init_database():
-    """Ensure all database tables exist."""
+    """Ensure all database tables exist and default admin account is created."""
     app = get_app()
     with app.app_context():
         db.create_all()
+        admin = User.query.filter_by(username='admin').first()
+        if not admin:
+            hashed_pw = bcrypt.generate_password_hash('admin123').decode('utf-8')
+            admin = User(username='admin', password_hash=hashed_pw, role='Admin')
+            db.session.add(admin)
+            db.session.commit()
 
 # ==========================================
 # AUTHENTICATION & USERS

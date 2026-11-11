@@ -11,7 +11,6 @@ A comprehensive Python-based desktop application developed to manage college and
   - Native desktop window with responsive cards, tables, segmented controls, and modal dialogs
   - **Zero HTML, CSS, or JavaScript dependencies** (complies strictly with academic guide restrictions)
 - **Backend & Database**: Python, SQLAlchemy, SQLite, Bcrypt password encryption
-- **Reporting**: FPDF for PDF report generation
 
 ---
 
@@ -73,8 +72,6 @@ A comprehensive Python-based desktop application developed to manage college and
    ```bash
    python run.py
    ```
-
-*(Optional: If you ever need to run the older Flask web server, run `python run_web.py`)*
 
 ---
 

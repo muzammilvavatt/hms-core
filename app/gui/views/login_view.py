@@ -77,7 +77,7 @@ class LoginView(ctk.CTkFrame):
 
         self.entry_username = ctk.CTkEntry(
             form_frame,
-            placeholder_text="e.g. admin or STU001",
+            placeholder_text="Enter username or Student ID",
             font=theme.FONT_BODY,
             height=42,
             corner_radius=theme.RADIUS_ENTRY
@@ -100,7 +100,7 @@ class LoginView(ctk.CTkFrame):
 
         self.entry_password = ctk.CTkEntry(
             pass_container,
-            placeholder_text="Enter your password",
+            placeholder_text="Enter password",
             show="•",
             font=theme.FONT_BODY,
             height=42,
@@ -146,48 +146,7 @@ class LoginView(ctk.CTkFrame):
             hover_color=theme.PRIMARY_HOVER,
             command=self._handle_login
         )
-        self.btn_login.pack(fill="x", padx=36, pady=(0, 18))
-
-        # Demo Quick-Fill Section
-        demo_frame = ctk.CTkFrame(card, fg_color=theme.BG_CARD_ALT, corner_radius=10)
-        demo_frame.pack(fill="x", padx=36, pady=(0, 24))
-
-        lbl_demo = ctk.CTkLabel(
-            demo_frame,
-            text="Quick Fill Credentials",
-            font=theme.FONT_SMALL,
-            text_color=theme.TEXT_SECONDARY
-        )
-        lbl_demo.pack(pady=(10, 6))
-
-        btn_box = ctk.CTkFrame(demo_frame, fg_color="transparent")
-        btn_box.pack(pady=(0, 10))
-
-        btn_demo_admin = ctk.CTkButton(
-            btn_box,
-            text="🔑 Admin",
-            font=theme.FONT_SMALL,
-            width=110,
-            height=28,
-            corner_radius=6,
-            fg_color=theme.SECONDARY,
-            hover_color=theme.SECONDARY_HOVER,
-            command=lambda: self._fill_credentials("admin", "admin123")
-        )
-        btn_demo_admin.pack(side="left", padx=4)
-
-        btn_demo_student = ctk.CTkButton(
-            btn_box,
-            text="🎓 Student",
-            font=theme.FONT_SMALL,
-            width=110,
-            height=28,
-            corner_radius=6,
-            fg_color=theme.SECONDARY,
-            hover_color=theme.SECONDARY_HOVER,
-            command=lambda: self._fill_credentials("STU001", "STU001")
-        )
-        btn_demo_student.pack(side="left", padx=4)
+        self.btn_login.pack(fill="x", padx=36, pady=(0, 32))
 
     def _toggle_password_visibility(self):
         self.show_password = not self.show_password
@@ -197,13 +156,6 @@ class LoginView(ctk.CTkFrame):
         else:
             self.entry_password.configure(show="•")
             self.btn_toggle_pw.configure(text="👁")
-
-    def _fill_credentials(self, username, password):
-        self.entry_username.delete(0, "end")
-        self.entry_username.insert(0, username)
-        self.entry_password.delete(0, "end")
-        self.entry_password.insert(0, password)
-        self.lbl_error.configure(text="")
 
     def _handle_login(self):
         username = self.entry_username.get().strip()
